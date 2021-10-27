@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<launch>
+  <!-- include file="$(find cbot_control)/launch/cmd_vel_mux.launch"/ -->
+  <arg name="input_cmd_vel" default="/cmd_vel"/>
+  <node pkg="castlex_bringup" type="castlex_stm32_bringup.py" name="castlex_stm32_bringup" output="screen" respawn="false" respawn_delay="0" >
+    <param name="port" value="/dev/stm32"/>
+    <param name="baud" value="115200"/>
+    <param name="input_cmd_vel" value="$(arg input_cmd_vel)"/>
+    <!-- 轮子转一圈编码器输出多少脉冲 -->
+    <param name="encoder_per_loop" value="3176"/>  <!-- 改过,原来为3188　-->
+    <!-- 轮子直径/m 0.105-->
+    <param name="wheel_diameter" value="0.105"/>
+
+    <!-- 底盘自身坐标系与三轮夹角 -->
+    <param name="angle_a" value="29.425"/> <!-- 单位：°-->
+    <param name="angle_b" value="30.0"/>　<!-- 单位：°-->
+    <param name="angle_c" value="0"/>　<!-- 单位：°-->
+
+    <!-- 轮子到底盘中心的距离 -->
+    <param name="length_a" value="0.1407"/>　<!-- 单位：m-->
+    <param name="length_b" value="0.1407"/>　<!-- 单位：m-->
+    <param name="length_c" value="0.1407"/>　<!-- 单位：m-->
+
+    <!--三轮全向轮模型中，线速度只与轮子直径有关，而角速度与轮子的直径以及轮子到底盘中心的距离有关。
+    因此线速度的标定调整轮子直径这个参数，角速度标定调整轮子到底盘中心的距离这个参数-->
+    <param name="safely" value="0"/>
+  </node>
+</launch>
