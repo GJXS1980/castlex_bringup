@@ -161,10 +161,16 @@ include_directories(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-install(PROGRAMS
-  scripts/castlex_stm32_bringup.py
-  scripts/castlex_stm32_bringup_python3.so
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION} )
+#install(PROGRAMS
+#  scripts/castlex_stm32_bringup.py
+#  scripts/castlex_stm32_bringup_python3.so
+#  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION} )
+
+install(
+  DIRECTORY scripts
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
@@ -183,11 +189,17 @@ install(DIRECTORY include/${PROJECT_NAME}/
 
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
- install(FILES
- launch/castlex_stm32_bringup.launch
+# install(FILES
+# launch/castlex_stm32_bringup.launch
 #   # myfile2
-   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
- )
+#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+# )
+
+install(
+  DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
 
 #############
 ## Testing ##
