@@ -474,11 +474,11 @@ class Stm32ROS():
 
     # 启动２级消毒模式
     elif self.disinfect_tag == 2:
-      self.execute_array('x(7400)')
+      self.execute_array('x(8000)')
 
     # 启动３级消毒模式
     elif self.disinfect_tag == 3:
-      self.execute_array('x(5400)')
+      self.execute_array('x(7400)')
 
     # 传感器全关闭
     elif self.disinfect_tag == 0:

@@ -13,3 +13,10 @@ bloom-generate rosdebian --os-name ubuntu --ros-distro melodic
 
 fakeroot debian/rules binary
 ```
+
+3.增加可执行权限
+```bash
+roscd castlex_bringup/scripts/
+sudo chmod +x *.py
+```
+
