@@ -115,14 +115,14 @@ class Stm32ROS():
     # new add
     # 订阅传感器是否要开启消息
     rospy.Subscriber("sensor_switch", Int32, self.sensor_switch_number)
-    # 订阅传感器是否要开启消息
-    rospy.Subscriber("light_control", Int32, self.light_control)
+    # 订阅紫外线消杀话题
+    rospy.Subscriber("ultraviolet_disinfection", Int32, self.light_control)
     # 订阅貨艙是否要开启消息
     rospy.Subscriber("Warehouse_control", Int32, self.Warehouse_control)
     # 货仓呼吸灯话题
     rospy.Subscriber("Warehouse_light_control", Int32, self.Warehouse_light_control)
-    # 订阅是否要启动消毒功能
-    rospy.Subscriber("disinfect_switch", Int32, self.disinfect_switch_number)
+    # 订阅喷雾消毒话题
+    rospy.Subscriber("spray_kill", Int32, self.disinfect_switch_number)
 
     # new add
     #　发布防碰撞传感器信息话题
