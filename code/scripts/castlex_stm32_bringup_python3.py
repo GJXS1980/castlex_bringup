@@ -69,6 +69,8 @@ class Stm32ROS():
     self.odom_last = self.odom_now
     self.odom_dt = self.odom_now - self.odom_last
 
+    self.turn_off , self.turn_on = True, False
+
     # 定义速度控制相关变量
     self.last_cmd_vel = time.time()
     self.cmd_x, self.cmd_y, self.cmd_th = 0.0, 0.0, 0.0
@@ -232,11 +234,13 @@ class Stm32ROS():
 
 # 启动消毒功能
   def light_control_switch(self, data):
-    if self.light == 1:
+    if data == 1 and self.turn_off:
       self.execute_ack("ZON")
+      self.turn_off, self.turn_on = False, True
 
-    elif self.light == 0:
+    elif data == 0 and self.turn_on:
       self.execute_ack("ZOFF")
+      self.turn_on, self.turn_off = False, True
 
     else:
       pass
